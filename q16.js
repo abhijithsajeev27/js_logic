@@ -1,84 +1,45 @@
 const fs= require('fs');
-const { off } = require('process');
+
 var read=require('readline-sync')
-let name=''
-let food=''
-let seat=''
+let food={
+  seatno:[],
+  food_preference:[]
 
-let len= read.question("Enter the length...");
-
-for(i=0;i<len;++i){
-name[i]=read.question("Enter the Name...");
-food[i]=read.question("Enter the food preference...");
-seat[i]=read.question("Enter the seatno...");
 }
-num=read.question("Enter 1 for ascending and 2 for descending...");
+let seat=[
+          ['','','','',''],
+          ['','','','',''],
+          ['','','','',''],
+          ['','','','',''],
+          ['','','','','']
+        ];//00
+      
+let k=1
+for(i=0;i<5;++i){
+  for (j=0;j<5;++j){
+    seat[i][j]=k;
+    k+=1;
+  }
+}
 
-if(num=='1')
-Sort_asc(name, food, seat)
+console.log(seat)
 
-else Sort_des(name, food, seat)
+l=read.question("Enter the traveller preference number...");
 
+for(i=0;i<l;++i){
+  
+  food.seatno[i]=read.question("Enter the seat number.....")
+  food.food_preference[i]=read.question("Enter the food preference.....");
+}
 
-function Sort_des(name, food, seat){
-    
-    for(var i = 0; i < seat.length; i++){
-     
-      for(var j = 0; j < ( seat.length - i -1 ); j++){
-         
-        if(arr[j] < arr[j+1]){
-           
-          var temp = seat[j]
-          seat[j] = seat[j + 1]
-          seat[j+1] = temp
-
-           temp = name[j]
-          name[j] = name[j + 1]
-          name[j+1] = temp
-
-          temp = food[j]
-          food[j] = food[j + 1]
-          food[j+1] = temp
-
-        }
+for(i=0;i<5;++i){
+  for(j=0;j<5;++j){
+    for(k=0;k<l;++k){
+      if (seat[i][j]==food.seatno[k]){
+         seat[i][j]=food.food_preference[i]
       }
     }
-    console.log("Desc Order")
-    console.log(seat);
-    console.log(name);
-    console.log(food);
-   }
+  }
+}
 
-
-
-   function Sort_asc(name, food, seat){
-    
-    for( i = 0; i < seat.length; i++){
-        console.log("Sorting @ i?")
-      for( j = 0; j < ( seat.length - i -1 ); j++){
-        console.log("Sorting @ j?")
-        if(seat[j] > seat[j+1]){
-           
-            var temp = seat[j]
-            seat[j] = seat[j + 1]
-            seat[j+1] = temp
-  
-             temp = name[j]
-            name[j] = name[j + 1]
-            name[j+1] = temp
-  
-            temp = food[j]
-            food[j] = food[j + 1]
-            food[j+1] = temp
-            console.log("Sorting @ if?")
-        }
-      }
-    }
-    console.log("ascending Order")
-    console.log(seat);
-   console.log(name);
-   
-   console.log(food);
-    
-   }
-   
+console.log(seat)
